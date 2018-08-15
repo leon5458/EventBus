@@ -32,15 +32,15 @@ public class MainActivity extends AppCompatActivity {
         EventBus.getDefault().register(this);
     }
 
-      //事件订阅者处理事件
+    //事件订阅者处理事件
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void onMoonEvent(MessageEvent messageEvent) {
         tv_message.setText(messageEvent.getMessage());
     }
 
-//    订阅者处理粘性事件
-    @Subscribe(threadMode = ThreadMode.POSTING,sticky = true)
-    public void ononMoonStickyEvent(MessageEvent messageEvent){
+    //    订阅者处理粘性事件
+    @Subscribe(threadMode = ThreadMode.POSTING, sticky = true)
+    public void ononMoonStickyEvent(MessageEvent messageEvent) {
         tv_message.setText(messageEvent.getMessage());
     }
 
@@ -48,5 +48,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onDestroy() {
         super.onDestroy();
         //取消注册事件
+        EventBus.getDefault().unregister(this);
     }
 }
